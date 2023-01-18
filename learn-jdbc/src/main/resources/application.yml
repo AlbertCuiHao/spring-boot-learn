@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /demo
+  port: 8088
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+logging:
+  level:
+    org.springframework.jdbc.core.JdbcTemplate: debug
+    com.albert.learn.jdbc.service: debug
