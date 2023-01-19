@@ -1,4 +1,10 @@
 server:
   servlet:
-    context-path: /
-  port: 8088
+    context-path: /demo
+  port: 9000
+spring:
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+swagger:
+  token: uid_token

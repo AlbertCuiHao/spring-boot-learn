@@ -1,4 +1,4 @@
-package com.albert.lean.learn.swagger;
+package com.albert.lean.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
