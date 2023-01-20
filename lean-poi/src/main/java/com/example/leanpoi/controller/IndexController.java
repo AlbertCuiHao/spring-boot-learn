@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 public class IndexController {
 
     @GetMapping("/export")
-    public void export(HttpServletResponse response) throws Exception {
+    public void export(HttpServletResponse response) {
         //1.构造数据
         String[] head = new String[3];
         List<String[]> content = new ArrayList<>();
@@ -29,30 +28,34 @@ public class IndexController {
         content.add(new String[]{"1", "Albert", "14"});
         content.add(new String[]{"2", "Ben", "17"});
         content.add(new String[]{"3", "June", "18"});
+        String fileName = "poi_demo";
+        exportExcel(response, head, content, fileName);
+    }
+
+    public void exportExcel(HttpServletResponse response, String[] head, List<String[]> content, String fileName) {
         //1.创建workbook工作簿
-        try (XSSFWorkbook xssfWorkbook = new XSSFWorkbook(); OutputStream output = response.getOutputStream()) {
+        try (XSSFWorkbook workbook = new XSSFWorkbook();
+             OutputStream output = response.getOutputStream()) {
             //2.创建表单Sheet
-            Sheet sheet = xssfWorkbook.createSheet("test");
+            Sheet sheet = workbook.createSheet();
             // 自动设置宽度
             sheet.autoSizeColumn(0);
             //3. title
-            CellStyle titleStyle = getTitleStyle(xssfWorkbook);
+            CellStyle titleStyle = getTitleStyle(workbook);
             writeTitle(sheet, head, titleStyle);
             //4. content
-            CellStyle contentStyle = getContentStyle(xssfWorkbook);
+            CellStyle contentStyle = getContentStyle(workbook);
             writeContent(sheet, content, contentStyle);
             //5.文件流
-            String fileName = "poi_excel_demo.xlsx";
-            try {
-                fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.name());
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ";" + "filename*=utf-8''" + fileName);
+            fileName = fileName + ".xlsx";
+            setResponseHeader(response, fileName);
             //6.写入文件
-            xssfWorkbook.write(output);
+            workbook.write(output);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
+
 
     public void writeTitle(Sheet sheet, String[] head, CellStyle titleStyle) {
         Row titleRow = sheet.createRow(0);
@@ -75,23 +78,35 @@ public class IndexController {
         }
     }
 
-    public CellStyle getTitleStyle(XSSFWorkbook xssfWorkbook) {
+    public CellStyle getTitleStyle(Workbook workbook) {
         //标题样式
-        CellStyle titleStyle = xssfWorkbook.createCellStyle();
+        CellStyle titleStyle = workbook.createCellStyle();
         titleStyle.setAlignment(HorizontalAlignment.LEFT);
         // 设置字体样式
-        Font titleFont = xssfWorkbook.createFont();
+        Font titleFont = workbook.createFont();
         titleFont.setFontName("黑体");
         titleFont.setFontHeightInPoints((short) 13);
         titleStyle.setFont(titleFont);
         return titleStyle;
     }
 
-    public CellStyle getContentStyle(XSSFWorkbook xssfWorkbook) {
+    public CellStyle getContentStyle(Workbook workbook) {
         // 数据样式
-        CellStyle contentStyle = xssfWorkbook.createCellStyle();
+        CellStyle contentStyle = workbook.createCellStyle();
         contentStyle.setAlignment(HorizontalAlignment.CENTER);
         return contentStyle;
+    }
+
+    private void setResponseHeader(HttpServletResponse response, String fileName) {
+        try {
+            fileName = new String(fileName.getBytes(), StandardCharsets.ISO_8859_1);
+            response.setContentType("application/octet-stream;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+            response.addHeader("Pargam", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
