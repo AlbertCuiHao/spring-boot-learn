@@ -23,20 +23,22 @@ import java.util.Collections;
 @Configuration
 public class SwaggerConfig {
 
-    @Value("${swagger.token}")
-    private String HEADER;
+    @Value("${albert.swagger.token_header}")
+    private String TOKEN_HEADER;
+    @Value("${albert.swagger.base_package}")
+    private String BASE_PACKAGE;
 
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .securitySchemes(Collections.singletonList(new ApiKey(HEADER, HEADER, SecurityScheme.In.HEADER.name())))
+                .securitySchemes(Collections.singletonList(new ApiKey(TOKEN_HEADER, TOKEN_HEADER, SecurityScheme.In.HEADER.name())))
                 .securityContexts(Collections.singletonList(SecurityContext.builder()
                         .securityReferences(Collections.singletonList(SecurityReference.builder()
-                                .scopes(new AuthorizationScope[0]).reference(HEADER).build()))
+                                .scopes(new AuthorizationScope[0]).reference(TOKEN_HEADER).build()))
                         .operationSelector(o -> o.requestMappingPattern().matches("/.*")).build()))
                 .select()
                 //apis： 添加swagger接口提取范围
-                .apis(RequestHandlerSelectors.basePackage("com.albert.lean.swagger.controller"))
+                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
                 .paths(PathSelectors.any()).build();
     }
 
