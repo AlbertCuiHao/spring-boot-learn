@@ -1,4 +1,4 @@
-package com.example.learninit;
+package com.example.learnweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

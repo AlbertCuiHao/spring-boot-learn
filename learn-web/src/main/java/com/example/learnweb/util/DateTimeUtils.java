@@ -1,4 +1,4 @@
-package com.example.learninit.util;
+package com.example.learnweb.util;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

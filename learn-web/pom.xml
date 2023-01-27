@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>learn-init</artifactId>
+    <artifactId>learn-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>learn-init</name>
-    <description>learn-init</description>
+    <name>learn-web</name>
+    <description>learn-web</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

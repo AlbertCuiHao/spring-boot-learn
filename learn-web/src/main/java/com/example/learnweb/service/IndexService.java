@@ -1,4 +1,4 @@
-package com.example.learninit.service;
+package com.example.learnweb.service;
 
 import org.springframework.stereotype.Component;
 

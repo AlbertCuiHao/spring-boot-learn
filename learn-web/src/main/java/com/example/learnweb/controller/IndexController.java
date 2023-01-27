@@ -1,7 +1,7 @@
-package com.example.learninit.controller;
+package com.example.learnweb.controller;
 
-import com.example.learninit.service.IndexService;
-import com.example.learninit.util.DateTimeUtils;
+import com.example.learnweb.service.IndexService;
+import com.example.learnweb.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
