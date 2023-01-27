@@ -1,5 +1,6 @@
 package com.example.leanpoi.controller;
 
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
@@ -25,17 +26,16 @@ public class IndexController {
         head[0] = "id";
         head[1] = "name";
         head[2] = "age";
-        content.add(new String[]{"1", "Albert", "14"});
-        content.add(new String[]{"2", "Ben", "17"});
-        content.add(new String[]{"3", "June", "18"});
+        content.add(new String[]{"01", "Albert", "14"});
+        content.add(new String[]{"02", "Ben", "17"});
+        content.add(new String[]{"03", "June", "18"});
         String fileName = "poi_demo";
         exportExcel(response, head, content, fileName);
     }
 
     public void exportExcel(HttpServletResponse response, String[] head, List<String[]> content, String fileName) {
         //1.创建workbook工作簿
-        try (XSSFWorkbook workbook = new XSSFWorkbook();
-             OutputStream output = response.getOutputStream()) {
+        try (XSSFWorkbook workbook = new XSSFWorkbook(); OutputStream output = response.getOutputStream()) {
             //2.创建表单Sheet
             Sheet sheet = workbook.createSheet();
             // 自动设置宽度
@@ -56,45 +56,44 @@ public class IndexController {
         }
     }
 
-
-    public void writeTitle(Sheet sheet, String[] head, CellStyle titleStyle) {
-        Row titleRow = sheet.createRow(0);
-        for (int i = 0; i < head.length; i++) {
-            Cell cell = titleRow.createCell(i);
-            cell.setCellValue(head[i]);
-            cell.setCellStyle(titleStyle);
-        }
-    }
-
-    public void writeContent(Sheet sheet, List<String[]> content, CellStyle contentStyle) {
-        for (int i = 0; i < content.size(); i++) {
-            Row titleRow = sheet.createRow(i + 1);
-            String[] strings = content.get(i);
-            for (int j = 0; j < strings.length; j++) {
-                Cell cell = titleRow.createCell(j);
-                cell.setCellValue(strings[j]);
-                cell.setCellStyle(contentStyle);
-            }
-        }
-    }
-
     public CellStyle getTitleStyle(Workbook workbook) {
         //标题样式
-        CellStyle titleStyle = workbook.createCellStyle();
-        titleStyle.setAlignment(HorizontalAlignment.LEFT);
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(HorizontalAlignment.LEFT);
         // 设置字体样式
-        Font titleFont = workbook.createFont();
-        titleFont.setFontName("黑体");
-        titleFont.setFontHeightInPoints((short) 13);
-        titleStyle.setFont(titleFont);
-        return titleStyle;
+        Font font = workbook.createFont();
+        font.setFontName("黑体");
+        font.setFontHeightInPoints((short) 13);
+        cellStyle.setFont(font);
+        return cellStyle;
     }
 
     public CellStyle getContentStyle(Workbook workbook) {
         // 数据样式
-        CellStyle contentStyle = workbook.createCellStyle();
-        contentStyle.setAlignment(HorizontalAlignment.CENTER);
-        return contentStyle;
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(HorizontalAlignment.LEFT);
+        return cellStyle;
+    }
+
+    public void writeTitle(Sheet sheet, String[] head, CellStyle cellStyle) {
+        Row row = sheet.createRow(0);
+        for (int i = 0; i < head.length; i++) {
+            Cell cell = row.createCell(i);
+            cell.setCellValue(head[i]);
+            cell.setCellStyle(cellStyle);
+        }
+    }
+
+    public void writeContent(Sheet sheet, List<String[]> content, CellStyle cellStyle) {
+        for (int i = 0; i < content.size(); i++) {
+            Row row = sheet.createRow(i + 1);
+            String[] strings = content.get(i);
+            for (int j = 0; j < strings.length; j++) {
+                Cell cell = row.createCell(j);
+                cell.setCellValue(strings[j]);
+                cell.setCellStyle(cellStyle);
+            }
+        }
     }
 
     private void setResponseHeader(HttpServletResponse response, String fileName) {
