@@ -2,10 +2,10 @@ server:
   servlet:
     context-path: /demo
   port: 9000
-spring:
-  mvc:
-    path match:
-      matching-strategy: ant_path_matcher
+#spring:
+#  mvc:
+#    path match:
+#      matching-strategy: ant_path_matcher
 albert:
   swagger:
     token_header: uid_token
