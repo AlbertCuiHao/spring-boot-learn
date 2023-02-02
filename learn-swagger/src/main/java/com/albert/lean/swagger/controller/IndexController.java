@@ -3,6 +3,7 @@ package com.albert.lean.swagger.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import java.util.StringJoiner;
 /**
  * @author Albert
  */
+@Tag(name = "IndexController")
 @RestController
 @RequestMapping("/index")
 public class IndexController {
