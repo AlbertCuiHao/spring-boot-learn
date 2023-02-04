@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <!--方法1:构造方法实例化bean-->
+    <!--spring-context-->
+    <!--配置bean-->
+    <!--name别名-->
+    <!--prototype:非单例,默认:singleton-->
+    <bean id="bookDao" name="bookDaoImpl" class="com.albert.dl.dao.impl.BookDaoImpl" scope="singleton">
+        <property name="connectionName" value="100"/>
+        <property name="dataBaseName" value="mysql"/>
+    </bean>
+    <bean id="userDao" name="userDaoImpl" class="com.albert.dl.dao.impl.UserDaoImpl" scope="singleton">
+        <!--name-->
+        <!--        <constructor-arg name="connectionName" value="50"/>-->
+        <!--        <constructor-arg name="dataBaseName" value="oracle"/>-->
+        <!--index-->
+        <constructor-arg index="0" value="50"/>
+        <constructor-arg index="1" value="oracle"/>
+    </bean>
+
+    <bean id="testService" class="com.albert.dl.service.impl.TestServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="indexService" class="com.albert.dl.service.impl.IndexServiceImpl">
+        <constructor-arg name="bookDao" ref="bookDao"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+</beans>
