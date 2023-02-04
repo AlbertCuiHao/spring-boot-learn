@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-        //function01();
+        function01();
         function02();
         function03();
     }
