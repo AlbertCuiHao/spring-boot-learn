@@ -8,8 +8,9 @@
     <!--配置bean-->
     <!--name别名-->
     <!--prototype:非单例,默认:singleton-->
-    <bean id="bookDao1" name="bookDaoImpl" class="com.albert.lifecycle.dao.impl.BookDaoImpl" scope="singleton"
-          init-method="init" destroy-method="destroy"/>
+    <bean id="bookDao" name="bookDaoImpl" class="com.albert.lifecycle.dao.impl.BookDaoImpl" scope="singleton" init-method="init" destroy-method="destroy"/>
 
-    <bean id="studentDao" class="com.albert.lifecycle.factory.StudentDaoFactoryBean"/>
+    <bean id="bookService" class="com.albert.lifecycle.service.impl.BookServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
 </beans>
