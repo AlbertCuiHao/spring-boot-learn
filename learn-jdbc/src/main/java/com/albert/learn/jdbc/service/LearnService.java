@@ -30,10 +30,11 @@ public class LearnService {
     }
 
     public List<UserModel> queryByArray(String userName) {
-        String sql = "SELECT " +
-                " id,user_name,user_age,version_no,create_time,create_by,update_time,update_by" +
-                " FROM learn.demo_user du" +
-                " WHERE user_name = ?";
+        String sql = """
+                SELECT id, user_name, user_age, version_no, create_time, create_by, update_time, update_by
+                FROM learn.demo_user du
+                WHERE user_name = ?
+                """;
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             UserModel model = new UserModel();
             model.setId(rs.getString("id"));
@@ -46,10 +47,11 @@ public class LearnService {
     public List<UserModel> queryByMap(String id) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
-        String sql = "SELECT" +
-                " id,user_name,user_age,version_no,create_time,create_by,update_time,update_by" +
-                " FROM learn.demo_user du" +
-                " WHERE id  =:id";
+        String sql = """
+                SELECT id, user_name, user_age, version_no, create_time, create_by, update_time, update_by
+                FROM learn.demo_user du
+                WHERE id  = :id
+                """;
         return namedParameterJdbcTemplate.query(sql, map, (rs, rowNum) -> {
             UserModel model = new UserModel();
             model.setId(rs.getString("id"));
@@ -60,10 +62,11 @@ public class LearnService {
     }
 
     public List<Map<String, Object>> queryForList(String userName) {
-        String sql = "SELECT " +
-                " id,user_name,user_age,version_no,create_time,create_by,update_time,update_by" +
-                " FROM learn.demo_user du" +
-                " WHERE user_name = ?";
+        String sql = """
+                SELECT id, user_name, user_age, version_no, create_time, create_by, update_time, update_by
+                FROM learn.demo_user du
+                WHERE user_name = ?
+                """;
         return jdbcTemplate.queryForList(sql, userName);
     }
 
@@ -74,10 +77,11 @@ public class LearnService {
         names.add("albert");
         names.add("ben");
         map.put("names", names);
-        String sql = "SELECT " +
-                " id,user_name,user_age,version_no,create_time,create_by,update_time,update_by" +
-                " FROM learn.demo_user du" +
-                " WHERE user_name IN (:names)";
+        String sql = """
+                SELECT id, user_name, user_age, version_no, create_time, create_by, update_time, update_by
+                FROM learn.demo_user du
+                WHERE user_name IN (:names)
+                """;
         if (logger.isDebugEnabled()) {
             logger.debug("queryByIN param:{}", map);
         }
@@ -85,11 +89,12 @@ public class LearnService {
     }
 
     public int updateByArray(String id, int age) {
-        String sql = "UPDATE" +
-                " develop.demo_user" +
-                " SET" +
-                " age = ?" +
-                " WHERE id =?";
+        String sql = """
+                UPDATE
+                    learn.demo_user
+                SET user_age = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, age, id);
     }
 
@@ -97,11 +102,12 @@ public class LearnService {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("age", age);
-        String sql = "UPDATE" +
-                " develop.demo_user" +
-                " SET" +
-                " age = :age" +
-                " WHERE id =:id";
+        String sql = """
+                UPDATE
+                    learn.demo_user
+                SET user_age = :age
+                WHERE id = :id
+                """;
         if (logger.isDebugEnabled()) {
             logger.debug("updateByMap param:{}", map);
         }
@@ -112,9 +118,11 @@ public class LearnService {
         String id = UUID.randomUUID().toString().replace("-", "");
         String name = model.getName();
         String age = model.getAge();
-        String sql = "INSERT INTO" +
-                " learn.demo_user (id, user_name, user_age, version_no, create_time, create_by, update_time, update_by)" +
-                " VALUES(?, ?, to_number(?,'999'), 1,now(), 'SYSTEM', now(), 'SYSTEM')";
+        String sql = """
+                INSERT INTO learn.demo_user
+                    (id, user_name, user_age, version_no, create_time, create_by, update_time, update_by)
+                VALUES (?, ?, to_number(?, '999'), 1, now(), 'SYSTEM', now(), 'SYSTEM')
+                                """;
         if (logger.isDebugEnabled()) {
             logger.debug("addByMap id:{} name:{} age:{}", id, name, age);
         }
@@ -127,9 +135,11 @@ public class LearnService {
         map.put("id", id);
         map.put("name", model.getName());
         map.put("age", model.getAge());
-        String sql = "INSERT INTO" +
-                " learn.demo_user (id, user_name, user_age, version_no, create_time, create_by, update_time, update_by)" +
-                " VALUES(:id, :name, to_number(:age,'999'), 1,now(), 'SYSTEM', now(), 'SYSTEM')";
+        String sql = """
+                INSERT INTO learn.demo_user
+                    (id, user_name, user_age, version_no, create_time, create_by, update_time, update_by)
+                VALUES (:id, :name, to_number(:age, '999'), 1, now(), 'SYSTEM', now(), 'SYSTEM')
+                                """;
         if (logger.isDebugEnabled()) {
             logger.debug("addByMap param:{}", map);
         }
@@ -137,7 +147,9 @@ public class LearnService {
     }
 
     public int deleteByName(String name) {
-        String sql = "DELETE FROM learn.demo_user WHERE user_name=?";
+        String sql = """
+                DELETE FROM learn.demo_user WHERE user_name = ?
+                """;
         return jdbcTemplate.update(sql, name);
     }
 
