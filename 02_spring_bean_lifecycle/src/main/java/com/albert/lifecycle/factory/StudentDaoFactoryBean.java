@@ -1,9 +1,8 @@
-package com.albert.ioc.factory;
+package com.albert.lifecycle.factory;
 
-import com.albert.ioc.dao.StudentDao;
-import com.albert.ioc.dao.UserDao;
-import com.albert.ioc.dao.impl.StudentDaoImpl;
-import com.albert.ioc.dao.impl.UserDaoImpl;
+
+import com.albert.instance.dao.impl.StudentDaoImpl;
+import com.albert.lifecycle.dao.StudentDao;
 import org.springframework.beans.factory.FactoryBean;
 
 public class StudentDaoFactoryBean implements FactoryBean<StudentDao> {

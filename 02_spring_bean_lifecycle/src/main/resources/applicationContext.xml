@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!--方法1:构造方法实例化bean-->
+    <!--spring-context-->
+    <!--配置bean-->
+    <!--name别名-->
+    <!--prototype:非单例,默认:singleton-->
+    <bean id="bookDao1" name="bookDaoImpl" class="com.albert.lifecycle.dao.impl.BookDaoImpl" scope="singleton"
+          init-method="init" destroy-method="destroy"/>
+
+    <bean id="studentDao" class="com.albert.lifecycle.factory.StudentDaoFactoryBean"/>
+</beans>

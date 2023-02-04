@@ -1,4 +1,4 @@
-package com.albert.ioc.dao;
+package com.albert.lifecycle.dao;
 
 public interface BookDao {
     void save();
