@@ -1,6 +1,8 @@
 package com.albert.ioc;
 
+import com.albert.ioc.dao.BookDao;
 import com.albert.ioc.dao.OrderDao;
+import com.albert.ioc.dao.StudentDao;
 import com.albert.ioc.dao.UserDao;
 import com.albert.ioc.service.BookService;
 import org.springframework.context.ApplicationContext;
@@ -8,25 +10,40 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-//        获取IOC容器
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        获取Bean
         System.out.println("构造方式");
+        function01(applicationContext);
+        System.out.println("静态工厂方式");
+        function02(applicationContext);
+        System.out.println("实例工厂方式");
+        function03(applicationContext);
+        System.out.println("FactoryBean方式");
+        function04(applicationContext);
+    }
+
+    public static void function01(ApplicationContext applicationContext) {
         BookService bookService = (BookService) applicationContext.getBean("bookService");
         bookService.save();
+        System.out.println("单例/多例");
+        BookDao a = (BookDao) applicationContext.getBean("bookDao1");
+        BookDao b = (BookDao) applicationContext.getBean("bookDao1");
+        System.out.println(a);
+        System.out.println(b);
+    }
 
-//        BookDao bookDao1 = (BookDao) applicationContext.getBean("bookDao1");
-//        BookDao bookDao2 = (BookDao) applicationContext.getBean("bookDao1");
-//        System.out.println(bookDao1);
-//        System.out.println(bookDao2);
-        System.out.println("静态工厂方式");
+    public static void function02(ApplicationContext applicationContext) {
         OrderDao orderDao = (OrderDao) applicationContext.getBean("orderDao");
         orderDao.save();
-        System.out.println("实例工厂方式");
+    }
+
+
+    public static void function03(ApplicationContext applicationContext) {
         UserDao userDao = (UserDao) applicationContext.getBean("userDao");
         userDao.save();
-        System.out.println("FactoryBean");
-        UserDao userDao1 = (UserDao) applicationContext.getBean("userDaoBean");
-        userDao1.save();
+    }
+
+    public static void function04(ApplicationContext applicationContext) {
+        StudentDao studentDao = (StudentDao) applicationContext.getBean("studentDao");
+        studentDao.save();
     }
 }

@@ -12,7 +12,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public void save() {
-        System.out.println("book service save");
+        System.out.println("BookServiceImpl save");
         bookDao.save();
     }
 }

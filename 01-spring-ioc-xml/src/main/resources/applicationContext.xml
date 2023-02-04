@@ -24,5 +24,5 @@
     <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"/>
 
     <!--方法4:FactoryBean-->
-    <bean id="userDaoBean" class="com.albert.ioc.factory.UserDaoFactoryBean"/>
+    <bean id="studentDao" class="com.albert.ioc.factory.StudentDaoFactoryBean"/>
 </beans>

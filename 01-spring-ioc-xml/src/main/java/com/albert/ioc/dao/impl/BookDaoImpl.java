@@ -8,6 +8,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     public void save() {
-        System.out.println("BookDao save");
+        System.out.println("BookDaoImpl save");
     }
 }

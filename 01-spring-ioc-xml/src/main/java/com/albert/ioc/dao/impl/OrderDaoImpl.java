@@ -8,6 +8,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     public void save() {
-        System.out.println("OrderDao save");
+        System.out.println("OrderDaoImpl save");
     }
 }

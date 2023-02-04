@@ -8,6 +8,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void save() {
-        System.out.println("UserDao save");
+        System.out.println("UserDaoImpl save");
     }
 }
