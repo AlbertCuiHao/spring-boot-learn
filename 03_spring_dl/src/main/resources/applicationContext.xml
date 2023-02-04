@@ -30,4 +30,6 @@
         <constructor-arg name="bookDao" ref="bookDao"/>
         <constructor-arg name="userDao" ref="userDao"/>
     </bean>
+
+    <bean id="bookService" class="com.albert.dl.service.impl.BookServiceImpl" autowire="byType"/>
 </beans>

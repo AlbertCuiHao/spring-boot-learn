@@ -19,7 +19,7 @@ public class TestServiceImpl implements TestService {
     }
 
     public void save() {
-        System.out.println("BookServiceImpl save");
+        System.out.println("TestServiceImpl save");
         bookDao.save();
         userDao.save();
     }
