@@ -3,11 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-    <!--方法1:构造方法实例化bean-->
-    <!--spring-context-->
-    <!--配置bean-->
-    <!--name别名-->
-    <!--prototype:非单例,默认:singleton-->
     <bean id="bookDao" name="bookDaoImpl" class="com.albert.dl.dao.impl.BookDaoImpl" scope="singleton">
         <property name="connectionName" value="100"/>
         <property name="dataBaseName" value="mysql"/>
@@ -32,4 +27,40 @@
     </bean>
 
     <bean id="bookService" class="com.albert.dl.service.impl.BookServiceImpl" autowire="byType"/>
+
+    <bean id="studentDao" class="com.albert.dl.dao.impl.StudentDaoImpl">
+        <property name="array">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>a</value>
+                <value>b</value>
+                <value>c</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>aa</value>
+                <value>bb</value>
+                <value>cc</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="age" value="14"/>
+                <entry key="name" value="ben"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="age">22</prop>
+                <prop key="name">albert</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

@@ -1,5 +1,6 @@
 package com.albert.dl;
 
+import com.albert.dl.dao.StudentDao;
 import com.albert.dl.service.BookService;
 import com.albert.dl.service.IndexService;
 import com.albert.dl.service.TestService;
@@ -8,9 +9,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-        function01();
-        function02();
-        function03();
+//        function01();
+//        function02();
+//        function03();
+        function04();
     }
 
     public static void function01() {
@@ -29,5 +31,11 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         BookService bookService = (BookService) context.getBean("bookService");
         bookService.save();
+    }
+
+    public static void function04() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        StudentDao studentDao = (StudentDao) context.getBean("studentDao");
+        studentDao.save();
     }
 }
