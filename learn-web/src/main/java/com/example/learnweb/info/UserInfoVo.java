@@ -9,8 +9,18 @@ public class UserInfoVo {
     private String userName;
     private String sex;
     @NotBlank
-    @Pattern(regexp = "^[0-9]\\d[1-9]$", message = "格式错误")
+    @Pattern(regexp = "^[1-9]\\d*$", message = "格式错误")
     private String age;
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 }
