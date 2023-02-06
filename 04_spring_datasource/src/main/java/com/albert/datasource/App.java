@@ -10,10 +10,6 @@ import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-        function01();
-    }
-
-    public static void function01() {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         //JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
@@ -25,6 +21,5 @@ public class App {
                 """;
         List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
         System.out.println(maps);
-
     }
 }
