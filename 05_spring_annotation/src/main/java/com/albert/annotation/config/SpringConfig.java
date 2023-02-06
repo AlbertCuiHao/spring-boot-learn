@@ -6,6 +6,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan({"com.albert.annotation"})
-@PropertySource({"jdbc.properties"})
+@PropertySource({"classpath:jdbc.properties"})
 public class SpringConfig {
 }
