@@ -4,11 +4,14 @@ package com.albert.annotation.dao.impl;
 import com.albert.annotation.dao.BookDao;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 @Repository
 //@Scope("prototype")
 public class BookDaoImpl implements BookDao {
+    @Value("${jdbc.name}")
+    private String name;
 
     public BookDaoImpl() {
         System.out.println("BookDaoImpl constructor is running");
@@ -25,6 +28,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     public void save() {
-        System.out.println("BookDaoImpl save...");
+        System.out.println("BookDaoImpl save..." + name);
     }
 }
