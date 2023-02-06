@@ -5,8 +5,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -14,12 +12,6 @@ public class App {
         //JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        String sql = """
-                SELECT id, user_name, user_age, version_no, create_time, create_by, update_time, update_by
-                FROM learn.demo_user du
-                WHERE user_name = 'albert'
-                """;
-        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
-        System.out.println(maps);
+        System.out.println(jdbcTemplate);
     }
 }
