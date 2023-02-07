@@ -40,4 +40,8 @@ public class MyAdvice {
         return proceed;
     }
 
+    @AfterReturning(value = "point()", returning = "res")
+    public void afterReturning(Object res) {
+        System.out.println("AfterReturning");
+    }
 }
