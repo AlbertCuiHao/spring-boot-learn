@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.albert</groupId>
-    <artifactId>04_spring_datasource</artifactId>
+    <artifactId>07-spring-transaction</artifactId>
     <version>0.0.1</version>
     <properties>
         <java.version>17</java.version>
