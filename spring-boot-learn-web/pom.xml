@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>learn-web</artifactId>
+    <artifactId>spring-boot-learn-web</artifactId>
     <version>0.0.1</version>
-    <name>learn-web</name>
-    <description>learn-web</description>
+    <name>spring-boot-learn-web</name>
+
     <properties>
         <java.version>17</java.version>
     </properties>
