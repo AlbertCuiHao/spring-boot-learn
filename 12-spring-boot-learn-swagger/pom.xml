@@ -8,11 +8,11 @@
         <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>lean-poi</artifactId>
+    <groupId>com.albert.lean</groupId>
+    <artifactId>12-spring-boot-learn-swagger</artifactId>
     <version>0.0.1</version>
-    <name>lean-poi</name>
-    <description>lean-poi</description>
+    <name>12-spring-boot-learn-swagger</name>
+
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -21,15 +21,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--swagger3-->
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.2.2</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
