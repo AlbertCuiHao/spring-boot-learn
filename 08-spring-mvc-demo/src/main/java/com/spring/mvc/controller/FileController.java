@@ -25,13 +25,14 @@ public class FileController {
         File file = new File(realPath);
         if (file.exists()) {
             String filename = file.getName();
-            try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file)); OutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
+            try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+                 OutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
                 response.reset();
                 response.setContentType("application/octet-stream");
                 response.setCharacterEncoding(StandardCharsets.UTF_8.name());
                 response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes(), StandardCharsets.ISO_8859_1));
 
-                byte[] buffer = new byte[1024];
+                byte[] buffer = new byte[4096]; //1024*4
                 int count = -1;
                 while ((count = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, count);
