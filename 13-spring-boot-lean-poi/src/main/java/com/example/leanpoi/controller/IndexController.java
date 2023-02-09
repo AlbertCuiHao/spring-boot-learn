@@ -98,7 +98,8 @@ public class IndexController {
     private void setResponseHeader(HttpServletResponse response, String fileName) {
         try {
             fileName = new String(fileName.getBytes(), StandardCharsets.ISO_8859_1);
-            response.setContentType("application/octet-stream;charset=UTF-8");
+            response.setContentType("application/octet-stream");
+            response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             response.addHeader("Pargam", "no-cache");
             response.addHeader("Cache-Control", "no-cache");

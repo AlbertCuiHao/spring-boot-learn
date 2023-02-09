@@ -23,7 +23,8 @@ public class FileController {
             String filename = file.getName();
             try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file)); OutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
                 response.reset();
-                response.setContentType("application/octet-stream;charset=UTF-8");
+                response.setContentType("application/octet-stream");
+                response.setCharacterEncoding(StandardCharsets.UTF_8.name());
                 response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes(), StandardCharsets.ISO_8859_1));
 
                 byte[] buffer = new byte[1024];
