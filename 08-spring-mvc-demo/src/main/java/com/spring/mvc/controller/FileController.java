@@ -22,10 +22,9 @@ public class FileController {
         if (file.exists()) {
             String filename = file.getName();
             try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file)); OutputStream outputStream = new BufferedOutputStream(response.getOutputStream())) {
-
+                response.reset();
                 response.setContentType("application/octet-stream;charset=UTF-8");
                 response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes(), StandardCharsets.ISO_8859_1));
-                response.setContentType("application/octet-stream");
 
                 byte[] buffer = new byte[1024];
                 int count = -1;
