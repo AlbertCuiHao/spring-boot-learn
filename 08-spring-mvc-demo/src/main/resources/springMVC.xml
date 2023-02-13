@@ -38,4 +38,13 @@
             <bean class="com.spring.mvc.interceptor.FirstHandlerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="ArithmeticException">/exception/arithmetic-exception</prop>
+            </props>
+        </property>
+        <property name="exceptionAttribute" value="msg"/>
+    </bean>
 </beans>
