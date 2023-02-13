@@ -37,6 +37,5 @@
             <mvc:exclude-mapping path="/index/**"/>
             <bean class="com.spring.mvc.interceptor.FirstHandlerInterceptor"/>
         </mvc:interceptor>
-
     </mvc:interceptors>
 </beans>
