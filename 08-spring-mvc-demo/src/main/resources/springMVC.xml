@@ -45,6 +45,7 @@
                 <prop key="ArithmeticException">/exception/arithmetic-exception</prop>
             </props>
         </property>
+        <!--exceptionAttribute属性设置一个属性名,将出现的异常信息在请求域中共享-->
         <property name="exceptionAttribute" value="msg"/>
     </bean>
 </beans>
