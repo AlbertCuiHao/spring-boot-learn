@@ -38,7 +38,7 @@
             <bean class="com.spring.mvc.interceptor.FirstHandlerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
+    <!--异常处理-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
