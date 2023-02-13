@@ -4,8 +4,6 @@ import com.spring.mvc.interceptor.FirstHandlerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -14,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
 
@@ -22,7 +19,6 @@ import java.util.Properties;
 @ComponentScan({"com.spring.mvc.controller"})
 @EnableWebMvc
 public class SpringWebConfig implements WebMvcConfigurer {
-
     //拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -47,11 +43,4 @@ public class SpringWebConfig implements WebMvcConfigurer {
         return new StandardServletMultipartResolver();
     }
 
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-        stringHttpMessageConverter.setDefaultCharset(StandardCharsets.UTF_8);
-        converters.add(stringHttpMessageConverter);
-    }
 }

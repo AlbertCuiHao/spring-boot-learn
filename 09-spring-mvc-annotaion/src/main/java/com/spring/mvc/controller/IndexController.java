@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/index")
 public class IndexController {
-    @GetMapping("/request-param")
+    @GetMapping(value = "/request-param", produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public String requestParam(@RequestParam("requestParam") String requestParam) {
-        System.out.println(requestParam);
-        return requestParam;
+    public String requestParam(@RequestParam("name") String name) {
+        System.out.println(name);
+        return name;
     }
 
     @GetMapping("/response-body")
