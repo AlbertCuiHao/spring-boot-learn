@@ -52,14 +52,14 @@ public class SecurityConfig {
                 .failureHandler(authenticationFailureHandler)
                 .securityContextRepository(securityContextRepository)
                 .and().securityContext().securityContextRepository(securityContextRepository)
-                .and().csrf().disable()
-                .authorizeHttpRequests()
+                .and().csrf().disable().cors()
+                .and().authorizeHttpRequests()
                 .anyRequest().authenticated().and().authenticationManager(authenticationManager(authenticationConfiguration))
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(((request, response, accessDeniedException) -> {
                     response.setStatus(HttpStatus.FORBIDDEN.value());
                     response.getWriter().write("403");
-                })).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                }));
         return httpSecurity.build();
     }
 
