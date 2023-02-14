@@ -6,4 +6,5 @@ springdoc:
   packages-to-scan: com.albert.lean.swagger.controller
 albert:
   swagger:
-    token_header: uid_token
+    token:
+      header: Authorization

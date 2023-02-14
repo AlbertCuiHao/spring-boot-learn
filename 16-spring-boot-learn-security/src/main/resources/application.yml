@@ -2,9 +2,8 @@ server:
   servlet:
     context-path: /demo
   port: 9000
-spring:
-  data:
-    redis:
-      password:
-      host: 127.0.0.1
-      port: 6379
+albert:
+  security:
+    token:
+      header: Authorization
+

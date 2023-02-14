@@ -30,8 +30,7 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
         String tokenHeader = null;
         if (webApplicationContext != null) {
-            //tokenHeader = request.getHeader(webApplicationContext.getEnvironment().getProperty("security.token.header"));
-            tokenHeader = request.getHeader("header");
+            tokenHeader = request.getHeader(webApplicationContext.getEnvironment().getProperty("albert.security.token.header"));
         }
         if (Objects.isNull(tokenHeader)) {
             chain.doFilter(request, response);
