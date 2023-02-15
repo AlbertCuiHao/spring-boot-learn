@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 
 @Component
-public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class LoginAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
 
     @Override

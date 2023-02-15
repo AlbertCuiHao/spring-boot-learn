@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 @Component
-public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 
     @Override
