@@ -17,9 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * 登录成功后 走此类进行鉴权操作
- */
+
 public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
     /**
@@ -37,13 +35,6 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
         } else {
             SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader));
             chain.doFilter(request, response);
-//            if (Boolean.TRUE.equals(redisTemplate.hasKey(tokenHeader))) {
-//                // 已经登录 则调用下面的方法进行解析 并设置认证信息
-//                SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader));
-//                chain.doFilter(request, response);
-//            } else {
-//                chain.doFilter(request, response);
-//            }
         }
     }
 
@@ -58,13 +49,6 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
         String username = "";
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_root"));
-        // 从Token中解密获取用户角色
-//        Object o = redisTemplate.opsForValue().get(tokenHeader);
-//        UserTokenModel userTokenModel = (UserTokenModel) o;
-//        if (Objects.nonNull(userTokenModel)) {
-//            username = userTokenModel.getUsername();
-//            userTokenModel.getGrantedAuthorityList().forEach(temp -> authorities.add(new SimpleGrantedAuthority(temp)));
-//        }
         return new UsernamePasswordAuthenticationToken(username, null, authorities);
     }
 
