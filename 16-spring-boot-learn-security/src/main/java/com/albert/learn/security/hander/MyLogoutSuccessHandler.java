@@ -15,6 +15,6 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setStatus(HttpStatus.OK.value());
-        response.getWriter().write("logout success");
+        response.getWriter().write("MyLogoutSuccessHandler logout success");
     }
 }

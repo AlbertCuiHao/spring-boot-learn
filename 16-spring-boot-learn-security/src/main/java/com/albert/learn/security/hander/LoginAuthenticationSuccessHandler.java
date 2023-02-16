@@ -28,7 +28,7 @@ public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessH
         HashMap<String, Object> map = new HashMap<>();
         map.put("status", true);
         map.put("code", "200");
-        map.put("msg", "登陆成功");
+        map.put("msg", "LoginAuthenticationSuccessHandler 登陆成功");
         writer.println(new ObjectMapper().writeValueAsString(map));
         writer.close();
         response.setStatus(HttpStatus.OK.value());

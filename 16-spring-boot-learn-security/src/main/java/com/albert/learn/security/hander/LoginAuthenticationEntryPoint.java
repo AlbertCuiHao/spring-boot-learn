@@ -14,6 +14,6 @@ public class LoginAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getWriter().write("pls login");
+        response.getWriter().write("LoginAuthenticationEntryPoint pls login");
     }
 }

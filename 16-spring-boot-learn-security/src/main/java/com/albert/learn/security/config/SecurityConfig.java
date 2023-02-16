@@ -48,6 +48,7 @@ public class SecurityConfig {
             AuthenticationSuccessHandler authenticationSuccessHandler,
             AuthenticationFailureHandler authenticationFailureHandler,
             AuthenticationEntryPoint authenticationEntryPoint,
+            MyOncePerRequestFilter myOncePerRequestFilter,
             AccessDeniedHandler accessDeniedHandler,
             LogoutSuccessHandler logoutSuccessHandler) throws Exception {
         httpSecurity.formLogin().usernameParameter("username").passwordParameter("password")
@@ -56,7 +57,7 @@ public class SecurityConfig {
                 .failureHandler(authenticationFailureHandler)
                 .and().authorizeHttpRequests()
                 .anyRequest().authenticated().and().authenticationManager(authenticationManager(authenticationConfiguration))
-                .addFilterBefore(new MyOncePerRequestFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(myOncePerRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler)
                 .and().logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);

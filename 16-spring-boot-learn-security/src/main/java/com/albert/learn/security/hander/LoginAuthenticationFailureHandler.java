@@ -26,7 +26,7 @@ public class LoginAuthenticationFailureHandler implements AuthenticationFailureH
         HashMap<String, Object> map = new HashMap<>();
         map.put("status", true);
         map.put("code", "400");
-        map.put("msg", "登陆失败,用户名或者密码错误");
+        map.put("msg", "onAuthenticationFailure,登陆失败,用户名或者密码错误");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getWriter().println(new ObjectMapper().writeValueAsString(map));
     }

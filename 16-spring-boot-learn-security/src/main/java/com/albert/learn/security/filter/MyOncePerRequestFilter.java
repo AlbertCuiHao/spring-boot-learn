@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Component
 public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
     /**
@@ -46,10 +47,10 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
      * @return 带用户名和密码以及权限的Authentication
      */
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
-        String username = "";
+//        String username = tokenHeader;
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_root"));
-        return new UsernamePasswordAuthenticationToken(username, null, authorities);
+        return new UsernamePasswordAuthenticationToken(tokenHeader, null, authorities);
     }
 
 }

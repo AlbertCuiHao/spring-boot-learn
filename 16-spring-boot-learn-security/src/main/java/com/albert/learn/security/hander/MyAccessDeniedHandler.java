@@ -15,6 +15,6 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         response.setStatus(HttpStatus.FORBIDDEN.value());
-        response.getWriter().write("403");
+        response.getWriter().write("MyAccessDeniedHandler 403");
     }
 }
