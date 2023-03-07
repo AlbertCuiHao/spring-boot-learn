@@ -16,7 +16,7 @@ public class BankDaoImpl implements BankDao {
 
 
     @Override
-    public void in(String name, int money) {
+    public void in(String name, long money) {
         String sql = """
                 UPDATE
                     learn.bank
@@ -27,7 +27,7 @@ public class BankDaoImpl implements BankDao {
     }
 
     @Override
-    public void out(String name, int money) {
+    public void out(String name, long money) {
         String sql = """
                 UPDATE
                     learn.bank

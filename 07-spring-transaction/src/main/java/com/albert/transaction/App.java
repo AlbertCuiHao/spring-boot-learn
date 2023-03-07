@@ -11,6 +11,6 @@ public class App {
     public static void main(String[] args) throws SQLException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         BankService bankService = context.getBean(BankService.class);
-        bankService.transfer();
+        bankService.transfer("A", "B", 50);
     }
 }
